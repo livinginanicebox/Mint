@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mint — Roblox Studio MCP Bridge for Arena AI</title>
+  <meta name="description" content="Mint connects Arena AI and other MCP clients to Roblox Studio so you can inspect, script, and build in your open place with AI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="brand" href="#">
+        <span class="brand-mark">M</span>
+        <span class="brand-name">Mint</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#setup">Setup</a>
+        <a href="#download" class="btn btn-sm btn-primary">Download</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-copy">
+        <p class="eyebrow">MCP bridge for Roblox Studio</p>
+        <h1>Connect <span class="accent">Arena AI</span> to Roblox Studio.</h1>
+        <p class="hero-lead">
+          Mint is an open-source MCP app that lets AI clients inspect your open place,
+          edit scripts, create instances, and run Luau commands inside Roblox Studio &mdash;
+          through a local, secure bridge you control.
+        </p>
+        <div class="hero-actions">
+          <a href="#download" class="btn btn-primary">Get Mint</a>
+          <a href="https://github.com/livinginanicebox/Mint" class="btn btn-ghost" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-item">
+            <span class="meta-label">Protocol</span>
+            <span class="meta-value">MCP (stdio)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Bridge</span>
+            <span class="meta-value">Local HTTP</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">License</span>
+            <span class="meta-value">MIT</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="panel-card">
+          <div class="panel-header">
+            <div class="panel-dots"><span></span><span></span><span></span></div>
+            <span class="panel-title">MCP client config</span>
+          </div>
+          <pre class="code-block"><code>{
+  <span class="k">"mcpServers"</span>: {
+    <span class="k">"mint-roblox"</span>: {
+      <span class="k">"command"</span>: <span class="s">"node"</span>,
+      <span class="k">"args"</span>: [<span class="s">"/path/to/Mint/dist/index.js"</span>],
+      <span class="k">"env"</span>: {
+        <span class="k">"MINT_BRIDGE_PORT"</span>: <span class="s">"5123"</span>
+      }
+    }
+  }
+}</code></pre>
+        </div>
+        <div class="status-card">
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span>Local bridge on <code>127.0.0.1:5123</code></span>
+          </div>
+          <div class="status-row muted">
+            <span class="status-dot dim"></span>
+            <span>Roblox Studio plugin polls for commands</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section container">
+      <div class="section-head">
+        <p class="eyebrow">What it can do</p>
+        <h2>Built for real Studio workflows.</h2>
+        <p class="section-lead">Mint exposes Roblox Studio actions as MCP tools, so your AI client can work with the place you already have open.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          </div>
+          <h3>Explore the DataModel</h3>
+          <p>List children, inspect properties, find instances, and read the current selection in your open Roblox place.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+          </div>
+          <h3>Edit scripts</h3>
+          <p>Read and write Script, LocalScript, and ModuleScript source with Studio-aware updates and undo history.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+          <h3>Create and modify instances</h3>
+          <p>Create new instances, set properties, and delete objects — all through explicit MCP tool calls.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 9l-3 3 3 3M16 9l3 3-3 3M13 7l-2 10"/></svg>
+          </div>
+          <h3>Run Luau commands</h3>
+          <p>Execute Luau in Studio for quick inspections, bulk changes, or prototyping when a dedicated tool isn't enough.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 5-3 7.5-7 10-4-2.5-7-5-7-10V6l7-3z"/></svg>
+          </div>
+          <h3>Local-first bridge</h3>
+          <p>The bridge runs on your machine. Your MCP client talks to the local server; the Studio plugin polls locally.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16v10H4z"/><path d="M9 7v10M4 11h16"/></svg>
+          </div>
+          <h3>Works with MCP clients</h3>
+          <p>Designed for Arena AI and compatible with other MCP clients that support local stdio servers.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2>A simple local bridge.</h2>
+          <p class="section-lead">Roblox Studio plugins can make outbound HTTP requests. Mint uses that to create a safe local command loop.</p>
+        </div>
+        <div class="flow">
+          <div class="flow-step">
+            <div class="flow-num">1</div>
+            <h3>Arena AI / MCP client</h3>
+            <p>Your AI client calls an MCP tool like <code>roblox_set_script_source</code>.</p>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">2</div>
+            <h3>Mint MCP server</h3>
+            <p>The local Node.js server receives the tool call and places a command on the bridge.</p>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </div>
+          <div class="flow-step">
+            <div class="flow-num">3</div>
+            <h3>Roblox Studio plugin</h3>
+            <p>The Mint plugin polls <code>127.0.0.1:5123</code>, runs the command, and returns the result.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="setup" class="section container">
+      <div class="section-head">
+        <p class="eyebrow">Setup</p>
+        <h2>Up and running in minutes.</h2>
+        <p class="section-lead">No executable installer yet &mdash; download the source, install dependencies, and connect your MCP client.</p>
+      </div>
+      <div class="setup-grid">
+        <div class="setup-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h3>Download Mint</h3>
+              <p>Clone the repository or download the source ZIP from GitHub.</p>
+              <pre class="code-block small"><code>git clone https://github.com/livinginanicebox/Mint.git
+cd Mint</code></pre>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h3>Install and build</h3>
+              <p>Requires Node.js 18+. Install dependencies and compile the TypeScript server.</p>
+              <pre class="code-block small"><code>npm install
+npm run build</code></pre>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h3>Install the Roblox Studio plugin</h3>
+              <p>Copy <code>plugin/MintMCPPlugin.rbxmx</code> into your Roblox Studio plugins folder, then restart Studio or enable the plugin. Click the <strong>Mint MCP</strong> toolbar button to connect.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h3>Add Mint to your MCP client</h3>
+              <p>Point your MCP client at the built server. For Arena AI or any stdio MCP client, use a config like this:</p>
+              <pre class="code-block small"><code>{
+  "mcpServers": {
+    "mint-roblox": {
+      "command": "node",
+      "args": ["C:/path/to/Mint/dist/index.js"]
+    }
+  }
+}</code></pre>
+              <p class="step-note">Use the absolute path to <code>dist/index.js</code> on your machine. After connecting, call <code>roblox_bridge_status</code> to confirm Studio is linked.</p>
+            </div>
+          </div>
+        </div>
+        <aside class="setup-aside">
+          <div class="aside-card">
+            <h3>Available MCP tools</h3>
+            <ul class="tool-list">
+              <li><code>roblox_bridge_status</code><span>Check bridge/plugin connection</span></li>
+              <li><code>roblox_get_selection</code><span>Read current Studio selection</span></li>
+              <li><code>roblox_list_children</code><span>Browse instance children</span></li>
+              <li><code>roblox_get_properties</code><span>Inspect instance properties</span></li>
+              <li><code>roblox_set_property</code><span>Set a property value</span></li>
+              <li><code>roblox_create_instance</code><span>Create a new instance</span></li>
+              <li><code>roblox_delete_instance</code><span>Delete an instance</span></li>
+              <li><code>roblox_get_script_source</code><span>Read script source</span></li>
+              <li><code>roblox_set_script_source</code><span>Update script source</span></li>
+              <li><code>roblox_run_code</code><span>Run Luau in Studio</span></li>
+              <li><code>roblox_find_instances</code><span>Search by class/name</span></li>
+            </ul>
+          </div>
+          <div class="aside-card warn-card">
+            <h3>Security note</h3>
+            <p>Mint is a local development tool. It can read and modify your open Roblox Studio place through the commands your MCP client sends. Only connect MCP clients you trust, and review actions before allowing them in sensitive places.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="download" class="section section-alt">
+      <div class="container">
+        <div class="download-card">
+          <div class="download-copy">
+            <p class="eyebrow">Download</p>
+            <h2>Get Mint</h2>
+            <p>Download the source code to run the Mint MCP server locally and install the Roblox Studio plugin. A packaged Windows installer is not available yet.</p>
+            <div class="download-actions">
+              <a class="btn btn-primary" href="https://github.com/livinginanicebox/Mint/archive/refs/heads/main.zip">Download Source (ZIP)</a>
+              <a class="btn btn-ghost" href="https://github.com/livinginanicebox/Mint" target="_blank" rel="noopener noreferrer">View Repository</a>
+            </div>
+            <p class="download-note">
+              <strong>No .exe yet:</strong> Mint currently ships as source code. You'll need Node.js 18+ to build and run the MCP server. A Windows executable installer is planned for a future release.
+            </p>
+          </div>
+          <div class="download-details">
+            <div class="detail-row">
+              <span class="detail-label">Package</span>
+              <span class="detail-value">Source code</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Platform</span>
+              <span class="detail-value">Windows / macOS / Linux (Node.js)</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Roblox Studio</span>
+              <span class="detail-value">Local plugin (.rbxmx)</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Executable</span>
+              <span class="detail-value pending">Coming soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark small">M</span>
+        <span>Mint</span>
+      </div>
+      <p>Open-source MCP bridge for Roblox Studio. Built for Arena AI workflows.</p>
+      <div class="footer-links">
+        <a href="https://github.com/livinginanicebox/Mint" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="#setup">Setup</a>
+        <a href="#download">Download</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
